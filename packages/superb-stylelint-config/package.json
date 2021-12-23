@@ -11,6 +11,7 @@
   "license": "MIT",
   "main": "index.js",
   "publishConfig": {
+    "access": "public",
     "registry": "https://registry.npm.taobao.org/"
   },
   "repository": {

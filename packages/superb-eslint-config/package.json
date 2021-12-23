@@ -12,6 +12,7 @@
   "license": "MIT",
   "main": "lib/superb-eslint-config.js",
   "publishConfig": {
+    "access": "public",
     "registry": "https://registry.npm.taobao.org/"
   },
   "repository": {
