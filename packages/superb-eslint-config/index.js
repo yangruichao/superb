@@ -38,6 +38,7 @@ module.exports = {
     'prefer-destructuring': ['error', { object: true, array: false }],
     // jsx
     'react/react-in-jsx-scope': 'off',
+    'react/jsx-filename-extension': 'off',
     // eslint-plugin-import
     'import/order': 'off',
     'import/extensions': 'off',
