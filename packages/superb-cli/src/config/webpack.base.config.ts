@@ -82,7 +82,7 @@ export function createBasePlugins(): WebpackPluginInstance[] {
 export function createBaseConfig() {
   return {
     entry: {
-      pc: path.resolve(__dirname, '../../site/pc/main.ts'),
+      pc: path.resolve(__dirname, '../../site/pc/index.tsx'),
       // mobile: path.resolve(__dirname, '../../site/mobile/main.ts')
     },
     resolve: {
@@ -92,12 +92,12 @@ export function createBaseConfig() {
     module: {
       rules: [
         {
-          test: /\.(js | jsx)$/,
+          test: /\.(js|jsx)$/,
           use: ['cache-loader', createBabelConfig()],
           exclude: /node_modules/,
         },
         {
-          test: /\.(ts | tsx)$/,
+          test: /\.(jsx|tsx)$/,
           use: [
             'cache-loader',
             createBabelConfig(),
