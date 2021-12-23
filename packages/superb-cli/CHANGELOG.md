@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/yangruichao/superb/compare/v0.2.1...v0.2.2) (2021-12-23)
+
+### Bug Fixes
+
+- **packages/super-cli:** 搭建 React 开发环境 ([c01e52a](https://github.com/yangruichao/superb/commit/c01e52a6fd9692eb68841ccbf0b4c138b7ca0633))
+
 ## [0.2.1](https://github.com/yangruichao/superb/compare/v0.2.0...v0.2.1) (2021-12-23)
 
 ### Bug Fixes
