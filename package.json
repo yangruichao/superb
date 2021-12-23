@@ -1,0 +1,65 @@
+{
+  "name": "root",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "useWorkspaces": true,
+  "private": true,
+  "npmClient": "yarn",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "prepare": "husky install",
+    "commit": "git-cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.md": "prettier --write",
+    "*.{ts,tsx,js,react,scss}": "prettier --write",
+    "*.{ts,tsx,js,react}": "eslint --fix",
+    "*.{react,css,scss}": "stylelint --fix"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@superb"
+    ]
+  },
+  "stylelint": {
+    "extends": [
+      "@superb/stylelint-config"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [],
+  "author": "yangruichao <yangruichaoyrc@163.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.5.0",
+    "husky": "^7.0.4",
+    "lerna": "^4.0.0",
+    "lint-staged": "^12.1.3",
+    "prettier": "^2.5.1",
+    "react": "^17.0.2",
+    "react-router-dom": "^6.2.1",
+    "stylelint": "^14.1.0",
+    "typescript": "^4.5.4"
+  }
+}

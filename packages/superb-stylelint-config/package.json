@@ -1,0 +1,33 @@
+{
+  "name": "@superb/stylelint-config",
+  "version": "0.0.0",
+  "description": "stylelint config of superb",
+  "keywords": [
+    "stylelint",
+    "superb"
+  ],
+  "author": "yangruichao <yangruichaoyrc@163.com>",
+  "homepage": "https://github.com/yangruichao/superb",
+  "license": "MIT",
+  "main": "index.js",
+  "publishConfig": {
+    "registry": "https://registry.npm.taobao.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yangruichao/superb.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/yangruichao/superb/issues"
+  },
+  "peerDependencies": {
+    "stylelint": "^14.1.0"
+  },
+  "dependencies": {
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-standard": "^24.0.0"
+  }
+}
