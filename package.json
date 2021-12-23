@@ -12,7 +12,7 @@
   "scripts": {
     "prepare": "husky install",
     "commit": "git-cz",
-    "version": "lerna version --conventional-commits"
+    "vs": "lerna version --conventional-commits"
   },
   "config": {
     "commitizen": {

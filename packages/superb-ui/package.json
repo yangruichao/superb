@@ -1,15 +1,16 @@
 {
-  "name": "@superb/stylelint-config",
+  "name": "@superb/ui",
   "version": "0.1.1",
-  "description": "stylelint config of superb",
+  "description": "A materinal like components lirbrary",
   "keywords": [
-    "stylelint",
-    "superb"
+    "React",
+    "Materinal",
+    "UI"
   ],
   "author": "yangruichao <yangruichaoyrc@163.com>",
   "homepage": "https://github.com/yangruichao/superb",
   "license": "MIT",
-  "main": "index.js",
+  "main": "lib/superb-ui.js",
   "publishConfig": {
     "registry": "https://registry.npm.taobao.org/"
   },
@@ -18,16 +19,10 @@
     "url": "git+https://github.com/yangruichao/superb.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "dev": "superb-cli dev",
+    "build": "superb-cli build"
   },
   "bugs": {
     "url": "https://github.com/yangruichao/superb/issues"
-  },
-  "peerDependencies": {
-    "stylelint": "^14.1.0"
-  },
-  "dependencies": {
-    "stylelint-config-prettier": "^9.0.3",
-    "stylelint-config-standard": "^24.0.0"
   }
 }
