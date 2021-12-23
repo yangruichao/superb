@@ -36,6 +36,8 @@ module.exports = {
     'class-methods-use-this': 'off',
     'global-require': 'off',
     'prefer-destructuring': ['error', { object: true, array: false }],
+    // jsx
+    'react/react-in-jsx-scope': 'off',
     // eslint-plugin-import
     'import/order': 'off',
     'import/extensions': 'off',
