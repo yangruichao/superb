@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/yangruichao/superb/compare/v0.2.0...v0.2.1) (2021-12-23)
+
+### Bug Fixes
+
+- **packages/superb-cli:** 修复不能识别 ts, js, jsx, tsx 错误 ([25f77e4](https://github.com/yangruichao/superb/commit/25f77e41bda41f167a8db1c0c82d1cc4048d2aa2))
+
 # [0.2.0](https://github.com/yangruichao/superb/compare/v0.1.1...v0.2.0) (2021-12-23)
 
 ### Features
