@@ -2,15 +2,16 @@ import { remove, copy } from 'fs-extra'
 import { parse } from 'path'
 import ora from 'ora'
 import { watch } from 'chokidar'
-import { CJS_DIR, ES_DIR, SRC_DIR } from '../shared/constant'
+import { CJS_DIR, ES_DIR, SRC_DIR, UMD_DIR } from '../shared/constant'
 import logger from '../shared/logger'
 import { isExampleDir, isTestsDir } from '../shared/fsUtils'
 import { compileES } from '../compiler/compileES'
 import { compileCJS } from '../compiler/compileCJS'
 import { compileComponent, compileFile } from '../compiler/compileComponent'
+import { compileUMD } from '../compiler/compileUMD'
 
 export function removeDir() {
-  return Promise.all([remove(ES_DIR), remove(CJS_DIR)])
+  return Promise.all([remove(ES_DIR), remove(CJS_DIR), remove(UMD_DIR)])
 }
 export async function recompile(path: string) {
   const esPath = path.replace('src', 'es')
@@ -39,10 +40,11 @@ export function handleFilesChange() {
   })
 }
 export async function compile(cmd: { watch: boolean }) {
-  const s = ora('Compile start for ES & CJS').start()
+  const s = ora('Compile start for ES & CJS & UMD').start()
   try {
     await removeDir()
     await Promise.all([compileES(), compileCJS()])
+    await compileUMD()
     s.succeed('✨ Compile success!')
 
     if (cmd.watch) {

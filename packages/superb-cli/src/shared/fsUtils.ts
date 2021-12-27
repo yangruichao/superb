@@ -2,6 +2,7 @@ import slash from 'slash'
 import { lstatSync, pathExistsSync, readdir, writeFileSync } from 'fs-extra'
 import { extname, resolve, parse } from 'path'
 import { EXAMPLE_DIR_NAME, SITE_MOBILE_ROUTES, SRC_DIR, TESTS_DIR_NAME } from './constant'
+import { getSuperbConfig } from '../config/superb-config'
 
 export function accessProperty(target: any, operator: string) {
   const keys: string[] = operator.split('.')
@@ -12,7 +13,11 @@ export function accessProperty(target: any, operator: string) {
     return value[key]
   }, target)
 }
-
+export function getDirComponentNames(dir: string[]) {
+  return dir.filter((filename: string) => ![...accessProperty(getSuperbConfig(), 'componentsIgnores'), 'index.js'].includes(
+      filename
+    ))
+}
 export function isDir(path: string): boolean {
   return pathExistsSync(path) && lstatSync(path).isDirectory()
 }
@@ -78,4 +83,11 @@ export async function buildMobileSiteRoutes() {
     ${routes.join(',')}
   ]`
   )
+}
+
+export function bigCamelize(str: string): string {
+  return str && camelize(str).replace(str.charAt(0), str.charAt(0).toUpperCase())
+}
+export function camelize(str: string): string {
+  return str.replace(/-(\w)/g, (_: any, p: string) => p.toUpperCase())
 }

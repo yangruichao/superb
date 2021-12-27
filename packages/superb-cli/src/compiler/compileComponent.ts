@@ -2,7 +2,7 @@ import { readdir, removeSync } from 'fs-extra'
 import { resolve } from 'path'
 import { EXAMPLE_DIR_NAME, TESTS_DIR_NAME } from '../shared/constant'
 import { isDir, isLess, isScript } from '../shared/fsUtils'
-import { compileScriptFile } from './compileScriptFile'
+import { compileScriptFile } from './compileScript'
 import { compileLess } from './compileStyle'
 
 export async function compileComponent(path: string, modules: string | boolean = false) {
@@ -13,8 +13,8 @@ export async function compileComponent(path: string, modules: string | boolean =
     compileFile(filePath, modules)
   })
 }
-export function compileFile(path: string, modules: string | boolean = false) {
-  isScript(path) && compileScriptFile(path, modules)
-  isLess(path) && compileLess(path)
-  isDir(path) && compileComponent(path)
+export async function compileFile(path: string, modules: string | boolean = false) {
+  isScript(path) && (await compileScriptFile(path, modules))
+  isLess(path) && (await compileLess(path))
+  isDir(path) && (await compileComponent(path))
 }

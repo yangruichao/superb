@@ -15,7 +15,6 @@ export async function compileLess(path: string) {
     const source = readFileSync(path, 'utf-8')
     const { css } = await render(source, { filename: path })
     writeFileSync(replaceExt(path, '.css'), clearEmptyLine(css), 'utf-8')
-    removeSync(path)
   } catch (e: any) {
     logger.error(e.toString())
   }
