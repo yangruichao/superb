@@ -20,7 +20,9 @@
   },
   "scripts": {
     "dev": "superb-cli dev",
-    "build": "superb-cli build"
+    "build": "superb-cli build",
+    "compile": "superb-cli compile",
+    "compile:watch": "superb-cli compile --watch"
   },
   "bugs": {
     "url": "https://github.com/yangruichao/superb/issues"

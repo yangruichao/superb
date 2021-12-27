@@ -1,7 +1,7 @@
 import slash from 'slash'
 import { lstatSync, pathExistsSync, readdir, writeFileSync } from 'fs-extra'
-import { extname, resolve } from 'path'
-import { EXAMPLE_DIR_NAME, SITE_MOBILE_ROUTES, SRC_DIR } from './constant'
+import { extname, resolve, parse } from 'path'
+import { EXAMPLE_DIR_NAME, SITE_MOBILE_ROUTES, SRC_DIR, TESTS_DIR_NAME } from './constant'
 
 export function accessProperty(target: any, operator: string) {
   const keys: string[] = operator.split('.')
@@ -19,6 +19,26 @@ export function isDir(path: string): boolean {
 
 export function isSFC(path: string): boolean {
   return pathExistsSync(path) && extname(path) === '.tsx'
+}
+export function isExampleDir(path: string): boolean {
+  return pathExistsSync(path) && parse(path).dir.endsWith(EXAMPLE_DIR_NAME)
+}
+export function isScript(path: string): boolean {
+  return (
+    (pathExistsSync(path) && extname(path) === '.js') ||
+    extname(path) === '.ts' ||
+    extname(path) === '.jsx' ||
+    extname(path) === '.tsx'
+  )
+}
+export function isLess(path: string): boolean {
+  return pathExistsSync(path) && extname(path) === '.less'
+}
+export function isTestsDir(path: string): boolean {
+  return pathExistsSync(path) && parse(path).dir.endsWith(TESTS_DIR_NAME)
+}
+export function replaceExt(path: string, ext: string): string {
+  return path.replace(extname(path), ext)
 }
 
 export function convertMobileSiteExamplePathToComponentName(path: string): string {

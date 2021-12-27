@@ -33,6 +33,12 @@
   },
   "eslintConfig": {
     "root": true,
+    "ignorePatterns": [
+      "packages/superb-cli/lib/**",
+      "packages/superb-cli/site/**",
+      "packages/superb-ui/es/**",
+      "packages/superb-ui/cjs/**"
+    ],
     "extends": [
       "@superb"
     ]
@@ -40,6 +46,12 @@
   "stylelint": {
     "extends": [
       "@superb/stylelint-config"
+    ],
+    "ignorePatterns": [
+      "packages/superb-cli/lib/**",
+      "packages/superb-cli/site/**",
+      "packages/superb-ui/es/**",
+      "packages/superb-ui/cjs/**"
     ]
   },
   "publishConfig": {

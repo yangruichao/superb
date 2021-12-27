@@ -16,7 +16,7 @@ export function getBuildConfig() {
     },
     plugins: [
       new WebpackBarPlugin({
-        name: 'Varlet production building',
+        name: 'Superb production building',
         color: '#15DD6A',
       }),
       new MiniCssExtractPlugin({
