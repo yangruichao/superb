@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/yangruichao/superb/compare/v0.3.0...v0.3.1) (2021-12-27)
+
+### Bug Fixes
+
+- **packages/superb-cli/package.json:** 添加处理 css 处理器依赖 ([3e09f33](https://github.com/yangruichao/superb/commit/3e09f33355a5d9741df96a8b593636895c4e995d))
+
 # [0.3.0](https://github.com/yangruichao/superb/compare/v0.2.2...v0.3.0) (2021-12-27)
 
 ### Features
