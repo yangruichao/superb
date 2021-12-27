@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/yangruichao/superb/compare/v0.3.1...v0.4.0) (2021-12-27)
+
+### Features
+
+- 打包 UMD ([2bb13d2](https://github.com/yangruichao/superb/commit/2bb13d209c59d5c4ee1245704a337e6a8859c85d))
+
 ## [0.3.1](https://github.com/yangruichao/superb/compare/v0.3.0...v0.3.1) (2021-12-27)
 
 ### Bug Fixes
