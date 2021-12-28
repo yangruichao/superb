@@ -8,6 +8,7 @@ export function getDevConfig() {
     devtool: 'source-map',
     output: {
       chunkFilename: 'js/[name].[chunkhash:8].js',
+      publicPath: '/',
     },
     devServer: {
       port: 8080,
@@ -19,10 +20,8 @@ export function getDevConfig() {
         },
         progress: true,
       },
-      static: {
-        publicPath: '/',
-      },
       hot: true,
+      historyApiFallback: true,
     },
     plugins: [
       new WebpackBarPlugin({
