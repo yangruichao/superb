@@ -1,7 +1,6 @@
-import slash from 'slash'
-import { lstatSync, pathExistsSync, readdir, writeFileSync } from 'fs-extra'
-import { extname, resolve, parse } from 'path'
-import { EXAMPLE_DIR_NAME, SITE_MOBILE_ROUTES, SRC_DIR, TESTS_DIR_NAME } from './constant'
+import { lstatSync, pathExistsSync } from 'fs-extra'
+import { extname, parse } from 'path'
+import { EXAMPLE_DIR_NAME, TESTS_DIR_NAME } from './constant'
 import { getSuperbConfig } from '../config/superb-config'
 
 export function accessProperty(target: any, operator: string) {
@@ -14,12 +13,16 @@ export function accessProperty(target: any, operator: string) {
   }, target)
 }
 export function getDirComponentNames(dir: string[]) {
-  return dir.filter((filename: string) => ![...accessProperty(getSuperbConfig(), 'componentsIgnores'), 'index.js'].includes(
-      filename
-    ))
+  return dir.filter(
+    (filename: string) =>
+      ![...accessProperty(getSuperbConfig(), 'componentsIgnores'), 'index.js'].includes(filename)
+  )
 }
 export function isDir(path: string): boolean {
   return pathExistsSync(path) && lstatSync(path).isDirectory()
+}
+export function isMD(path: string): boolean {
+  return pathExistsSync(path) && extname(path) === '.md'
 }
 
 export function isSFC(path: string): boolean {
@@ -44,45 +47,6 @@ export function isTestsDir(path: string): boolean {
 }
 export function replaceExt(path: string, ext: string): string {
   return path.replace(extname(path), ext)
-}
-
-export function convertMobileSiteExamplePathToComponentName(path: string): string {
-  return path.replace(`/${EXAMPLE_DIR_NAME}/index.vue`, '').replace(/.*\//g, '')
-}
-
-export async function getMobileSiteExamplePaths(): Promise<string[]> {
-  const srcDir: string[] = await readdir(SRC_DIR)
-  return srcDir
-    .filter((path) => isDir(resolve(SRC_DIR, path)))
-    .map((path) => resolve(SRC_DIR, path))
-    .filter((path) => isDir(resolve(path, EXAMPLE_DIR_NAME)))
-    .map((path) => resolve(path, EXAMPLE_DIR_NAME))
-    .filter((path) => pathExistsSync(resolve(path, 'index.vue')))
-    .map((path) => slash(resolve(path, 'index.vue')))
-}
-
-export async function buildMobileSiteRoutes() {
-  if (!pathExistsSync(SRC_DIR)) {
-    writeFileSync(SITE_MOBILE_ROUTES, 'export default []')
-    return
-  }
-
-  const paths = await getMobileSiteExamplePaths()
-  const routes = paths!.map(
-    (path) => `
-      {
-        path: '/${convertMobileSiteExamplePathToComponentName(path)}',
-        component: () => import('${path}')
-      }\
-    `
-  )
-
-  writeFileSync(
-    SITE_MOBILE_ROUTES,
-    `export default [\
-    ${routes.join(',')}
-  ]`
-  )
 }
 
 export function bigCamelize(str: string): string {

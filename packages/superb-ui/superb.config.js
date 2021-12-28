@@ -4,6 +4,12 @@ module.exports = {
     title: 'Superb 组件库',
     description: 'Superb 组件库文档',
     logo: 'https://cn.vuejs.org/images/logo.png',
+    menu: [
+      {
+        title: 'button',
+        doc: 'button',
+      },
+    ],
   },
   mobile: {
     title: 'Superb 组件库示例',

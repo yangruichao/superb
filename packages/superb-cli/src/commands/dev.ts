@@ -4,7 +4,7 @@ import { getPort } from 'portfinder'
 import { getDevConfig } from '../config/webpack.dev.config'
 import { setDev } from '../shared/env'
 import logger from '../shared/logger'
-import { buildMobileSiteRoutes } from '../shared/fsUtils'
+import { buildPcSiteRoutes } from '../compiler/compileSiteEntry'
 
 export function runDevServer(port: number, config: any) {
   const { host } = config.devServer
@@ -22,7 +22,7 @@ export function runDevServer(port: number, config: any) {
 
 export async function dev() {
   setDev()
-  await buildMobileSiteRoutes()
+  await Promise.all([buildPcSiteRoutes()])
   const config = getDevConfig()
 
   const { port } = config.devServer
