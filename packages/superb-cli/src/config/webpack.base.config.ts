@@ -108,6 +108,10 @@ export function createBaseConfig() {
           exclude: /node_modules/,
         },
         {
+          test: /\.md$/,
+          use: [createBabelConfig(), require.resolve('../../../superb-markdown-loader/index.js')],
+        },
+        {
           test: /\.(png|svg|jpg|jpeg|gif)$/i,
           type: 'asset/resource',
           // options: createURLLoaderOptions('image')

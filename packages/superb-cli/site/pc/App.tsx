@@ -1,33 +1,20 @@
 import React from 'react'
 import { Route, BrowserRouter, Routes, Link } from 'react-router-dom'
-// @ts-ignore
-import RouteLists from './routes'
+import routerList from './router'
 
-// const routes = RouteLists.map(item => (
-//   {
-//     path: item.path,
-//     component: item.loader
-//   }
-// ))
-// console.log(routes, 'RouteLists');
-const Home = (name?: string) => {
+const Home = function() {
   return (
     <div>
-      <Link to="/button/docs">跳转</Link>
+      <Link to="/zh-CN/button">跳转</Link>
     </div>
   )
-}
-const About = () => {
-  return <div>about</div>
 }
 const App = function () {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route path="/" element={<Home />} /> */}
-        {RouteLists.map((item) => {
-          return <Route key={item.path} path={item.path} element={item.component} />
-        })}
+        <Route path="/" element={<Home />} />
+        {routerList.map((item) => <Route key={item.path} path={item.path} element={<item.component />} />)}
       </Routes>
     </BrowserRouter>
   )
