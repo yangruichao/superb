@@ -97,7 +97,7 @@ export function createBaseConfig() {
           exclude: /node_modules/,
         },
         {
-          test: /\.(jsx|tsx)$/,
+          test: /\.(ts|tsx)$/,
           use: [
             'cache-loader',
             createBabelConfig(),
