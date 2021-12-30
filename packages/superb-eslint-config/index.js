@@ -41,6 +41,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': 'off',
     'react/destructuring-assignment': 'off',
+    'react/button-has-type': 'off',
     // eslint-plugin-import
     'import/order': 'off',
     'import/extensions': 'off',
@@ -56,5 +57,6 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
   },
 }
