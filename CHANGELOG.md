@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/yangruichao/superb/compare/v0.5.0...v0.6.0) (2021-12-30)
+
+### Bug Fixes
+
+- **eslint-config:** 添加规则 ([788b4d2](https://github.com/yangruichao/superb/commit/788b4d2faf25683d26781d2fdc3e26146f0e611e))
+- **markdown-loader:** 重置版本号 0.1.0 ([375fd9e](https://github.com/yangruichao/superb/commit/375fd9ec08fd5033c8b151e254af256611020057))
+
+### Features
+
+- **packages/cli,packages/ui:** 修改文档生成方式 ([2ac456a](https://github.com/yangruichao/superb/commit/2ac456a33e10c93ab4aca7fd32bf818629532312))
+
 # [0.5.0](https://github.com/yangruichao/superb/compare/v0.4.0...v0.5.0) (2021-12-29)
 
 ### Bug Fixes
