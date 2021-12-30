@@ -26,7 +26,7 @@ export function isMD(path: string): boolean {
 }
 
 export function isSFC(path: string): boolean {
-  return pathExistsSync(path) && extname(path) === '.tsx'
+  return (pathExistsSync(path) && extname(path) === '.tsx') || extname(path) === '.jsx'
 }
 export function isExampleDir(path: string): boolean {
   return pathExistsSync(path) && parse(path).dir.endsWith(EXAMPLE_DIR_NAME)

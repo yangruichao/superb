@@ -2,19 +2,19 @@ import { pathExistsSync, readdir, readdirSync, writeFile } from 'fs-extra'
 import { DOCS_DIR_NAME, ROOT_DOCS_DIR, SITE_PC_ROUTES, SRC_DIR } from '../shared/constant'
 import { resolve } from 'path'
 import slash from 'slash'
-import { isMD } from '../shared/fsUtils'
+import { isMD, isSFC } from '../shared/fsUtils'
 
-const COMPONENT_DOCS_RE = /\/([-\w]+)\/docs\/([-\w]+)\.md/
+const COMPONENT_DOCS_RE = /\/([-\w]+)\/example\/([-\w]+)\.tsx/
 const ROOT_DOCS_RE = /\/docs\/([-\w]+)\.([-\w]+)\.md/
 
 export function getComponentDocsRoutePath(componentDocsPath: string): string {
   const [_, routePath, language] = componentDocsPath.match(COMPONENT_DOCS_RE) ?? []
-  return `/${language}/${routePath}`
+  return `${language}/${routePath}`
 }
 export function getRootDocsRoutePath(rootDocsPath: string): string {
   const [, routePath, language] = rootDocsPath.match(ROOT_DOCS_RE) ?? []
 
-  return `/${language}/${routePath}`
+  return `${language}/${routePath}`
 }
 
 export async function findComponentDocsPaths(): Promise<string[]> {
@@ -30,7 +30,7 @@ export async function findComponentDocsPaths(): Promise<string[]> {
     readdirSync(dirPath).forEach((mdName: string) => {
       const path = resolve(dirPath, mdName)
 
-      isMD(path) && routePaths.push(slash(path))
+      isSFC(path) && routePaths.push(slash(path))
     })
 
     return routePaths

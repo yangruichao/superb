@@ -55,7 +55,7 @@ export function createBasePlugins(): WebpackPluginInstance[] {
   const superbConfig = getSuperbConfig()
   const plugins: WebpackPluginInstance[] = [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../../site/pc/index.html'),
+      template: path.resolve(__dirname, '../../site/index.html'),
       filename: 'index.html',
       chunks: ['pc'],
       title: accessProperty(superbConfig, 'pc.title'),
@@ -82,7 +82,7 @@ export function createBasePlugins(): WebpackPluginInstance[] {
 export function createBaseConfig() {
   return {
     entry: {
-      pc: path.resolve(__dirname, '../../site/pc/index.tsx'),
+      pc: path.resolve(__dirname, '../../site/index.tsx'),
       // mobile: path.resolve(__dirname, '../../site/mobile/main.ts')
     },
     resolve: {
@@ -109,7 +109,7 @@ export function createBaseConfig() {
         },
         {
           test: /\.md$/,
-          use: [createBabelConfig(), require.resolve('../../../superb-markdown-loader/index.js')],
+          use: [require.resolve('../../../superb-markdown-loader/index.js')],
         },
         {
           test: /\.(png|svg|jpg|jpeg|gif)$/i,

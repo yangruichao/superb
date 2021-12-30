@@ -13,10 +13,10 @@ export const TESTS_DIR_NAME = '__tests__'
 export const EXTENSIONS = ['.ts', '.tsx', '.jsx', '.js', '.scss', '.less', '.css']
 
 // site
-export const SITE_PC_ROUTES = resolve(__dirname, '../../site/PC/router/config.ts')
-export const SITE_MOBILE_ROUTES = resolve(__dirname, '../../site/mobile/routes.ts')
+export const SITE_PC_ROUTES = resolve(__dirname, '../../site/router/config.ts')
+export const SITE_MOBILE_ROUTES = resolve(__dirname, '../../site/routes.ts')
 export const OUTPUT_SITE_PATH = resolve(CWD, 'site')
 
 // doc
-export const DOCS_DIR_NAME = 'docs'
-export const ROOT_DOCS_DIR = resolve(CWD, 'docs')
+export const DOCS_DIR_NAME = 'example'
+export const ROOT_DOCS_DIR = resolve(CWD, 'example')
