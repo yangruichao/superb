@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.1](https://github.com/yangruichao/superb/compare/v0.6.0...v0.6.1) (2021-12-30)
+
+### Bug Fixes
+
+- **packages/cli/webpack.build.config.js:** 修复 filename 'hash' to 'fullhash' ([b345de5](https://github.com/yangruichao/superb/commit/b345de5a70eafbdf1af9df9b059bf95724c1ea34))
+
 # [0.6.0](https://github.com/yangruichao/superb/compare/v0.5.0...v0.6.0) (2021-12-30)
 
 ### Bug Fixes
