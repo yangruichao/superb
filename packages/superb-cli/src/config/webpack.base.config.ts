@@ -82,7 +82,7 @@ export function createBasePlugins(): WebpackPluginInstance[] {
 export function createBaseConfig() {
   return {
     entry: {
-      pc: path.resolve(__dirname, '../../site/index.tsx'),
+      docs: path.resolve(__dirname, '../../site/index.tsx'),
       // mobile: path.resolve(__dirname, '../../site/mobile/main.ts')
     },
     resolve: {

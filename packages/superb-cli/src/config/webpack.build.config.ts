@@ -11,7 +11,7 @@ export function getBuildConfig() {
     output: {
       publicPath: './',
       path: OUTPUT_SITE_PATH,
-      filename: '[name].[hash:8].js',
+      filename: 'js/[name].[fullhash:8].js',
       chunkFilename: 'js/[name].[chunkhash:8].js',
     },
     plugins: [
@@ -20,7 +20,7 @@ export function getBuildConfig() {
         color: '#15DD6A',
       }),
       new MiniCssExtractPlugin({
-        filename: 'css/[name].[hash:8].css',
+        filename: 'css/[name].[fullhash:8].css',
         chunkFilename: 'css/[id].[chunkhash:8].css',
       }),
       new CleanWebpackPlugin(),
