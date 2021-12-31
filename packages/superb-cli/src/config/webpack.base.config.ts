@@ -57,10 +57,10 @@ export function createBasePlugins(): WebpackPluginInstance[] {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../../site/index.html'),
       filename: 'index.html',
-      chunks: ['pc'],
-      title: accessProperty(superbConfig, 'pc.title'),
-      logo: accessProperty(superbConfig, 'pc.logo'),
-      description: accessProperty(superbConfig, 'pc.description'),
+      chunks: ['docs'],
+      title: accessProperty(superbConfig, 'docs.title'),
+      logo: accessProperty(superbConfig, 'docs.logo'),
+      description: accessProperty(superbConfig, 'docs.description'),
       ...commonTemplateOption,
     }),
     // new HtmlWebpackPlugin({
