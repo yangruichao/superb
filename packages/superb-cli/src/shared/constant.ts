@@ -14,7 +14,6 @@ export const EXTENSIONS = ['.ts', '.tsx', '.jsx', '.js', '.scss', '.less', '.css
 
 // site
 export const SITE_PC_ROUTES = resolve(__dirname, '../../site/router/config.ts')
-export const SITE_MOBILE_ROUTES = resolve(__dirname, '../../site/routes.ts')
 export const OUTPUT_SITE_PATH = resolve(CWD, 'site')
 
 // doc
