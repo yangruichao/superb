@@ -37,10 +37,11 @@
       "packages/superb-cli/lib/**",
       "packages/superb-ui/es/**",
       "packages/superb-ui/cjs/**",
-      "packages/superb-ui/src/**/example/**"
+      "packages/superb-ui/src/**/example/**",
+      "packages/superb-icons/src/**"
     ],
     "extends": [
-      "@superb"
+      "@superb/eslint-config"
     ]
   },
   "stylelint": {
@@ -51,7 +52,8 @@
       "packages/superb-cli/lib/**",
       "packages/superb-ui/es/**",
       "packages/superb-ui/cjs/**",
-      "packages/superb-ui/umd/**"
+      "packages/superb-ui/umd/**",
+      "packages/superb-icons/src/**"
     ]
   },
   "publishConfig": {
