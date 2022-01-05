@@ -14,26 +14,12 @@ function highlight(str, lang) {
   }
   return ''
 }
-
-function htmlWrapper(html) {
-  const hGroup = html.replace(/<h3/g, ':::<h3').replace(/<h2/g, ':::<h2').split(':::') || []
-  return hGroup
-    .map((fragment) =>
-      fragment.includes('<h3')
-        ? `<div class="card">
-        ${fragment}
-      </div>`
-        : fragment
-    )
-    .join('')
-}
-
 function markLoader(source) {
   const md = markdown({
     breaks: true,
     highlight,
   })
-  const html = htmlWrapper(md.render(source))
+  const html = md.render(source)
   const str = '`' + html + '`'
   return `export default ${str}`
 }
