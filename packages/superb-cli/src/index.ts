@@ -6,6 +6,8 @@ import { compile } from './commands/compile'
 
 const program = new Command()
 
+program.version(`superb-cli ${require('../package.json').version}`).usage('<command> [options]')
+
 program.command('dev').description('Run superb development environment').action(dev)
 
 program.command('build').description('Build superb site for production').action(build)

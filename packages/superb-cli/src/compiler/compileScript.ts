@@ -1,15 +1,12 @@
 import { BabelFileResult, transformAsync } from '@babel/core'
-import { writeFileSync, readFileSync, removeSync } from 'fs-extra'
+import { writeFileSync, readFileSync, removeSync, writeFile } from 'fs-extra'
 import { bigCamelize, replaceExt } from '../shared/fsUtils'
 import { resolve } from 'path'
 import logger from '../shared/logger'
 
-export async function compileScript(
-  script: string,
-  path: string,
-  modules: string | boolean = false
-) {
+export async function compileScript(script: string, path: string) {
   try {
+    const modules = process.env.BABEL_MODULE === 'commonjs' ? 'commonjs' : false
     const { code } = (await transformAsync(script, {
       filename: replaceExt(path, '.ts'),
       presets: [
@@ -38,51 +35,60 @@ export async function compileScript(
   }
 }
 
-export async function compileScriptFile(path: string, modules: string | boolean = false) {
+export async function compileScriptFile(path: string) {
   const sources = readFileSync(path, 'utf-8')
-  await compileScript(sources, path, modules)
+  await compileScript(sources, path)
 }
+export async function compileESEntry(dir: string, publicDirs: string[]) {
+  const imports: string[] = []
+  const lessImports: string[] = []
+  const publicComponents: string[] = []
 
-export function compileLibraryEntry(
-  dir: string,
-  componentNames: string[],
-  modules: string | boolean = false
-) {
-  const imports = componentNames
-    .map(
-      (componentName: string) => `import ${bigCamelize(componentName)} from './${componentName}'`
-    )
-    .join('\n')
-  const cssImports = componentNames
-    .map((componentName: string) => `import './${componentName}/index.css'`)
-    .join('\n')
-  const requires = componentNames
-    .map(
-      (componentName: string) => `var ${bigCamelize(componentName)} = require('./${componentName}')`
-    )
-    .join('\n')
-  const cssRequires = componentNames
-    .map((componentName: string) => `require('./${componentName}/index.css')`)
-    .join('\n')
+  publicDirs.forEach((dirname: string) => {
+    const publicComponent = bigCamelize(dirname)
 
-  const esExports = `\
+    publicComponents.push(publicComponent)
+    imports.push(`import ${publicComponent}, * as ${publicComponent}Module from './${dirname}'`)
+
+    lessImports.push(`import './${dirname}/style'`)
+  })
+
+  const umdTemplate = `\
+${imports.join('\n')}\n
+${lessImports.join('\n')}\n
 export {
-  ${componentNames.map((componentName: string) => `${bigCamelize(componentName)}`).join(',\n  ')}
+  ${publicComponents.join(',\n  ')}
 }
+
 export default {
-  ${componentNames.map((componentName: string) => `${bigCamelize(componentName)}`).join(',\n  ')},
-}\
-`
-  const cjsExports = `\
-module.exports = {
-  ${componentNames.map((componentName: string) => `${bigCamelize(componentName)}`).join(',\n  ')}
-}\
+  ${publicComponents.join(',\n  ')}
+}
 `
 
-  const template = `\
-${modules === 'cjs' ? requires : imports}\n
-${modules === 'cjs' ? cssRequires : cssImports}\n
-${modules === 'cjs' ? cjsExports : esExports}
+  const lessTemplate = `\
+${lessImports.join('\n')}
 `
-  writeFileSync(resolve(dir, 'index.js'), template, 'utf-8')
+  await Promise.all([
+    writeFile(resolve(dir, 'umdIndex.js'), umdTemplate, 'utf-8'),
+    writeFile(resolve(dir, 'less.js'), lessTemplate, 'utf-8'),
+  ])
+}
+
+export function compileCommonJSEntry(dir: string, publicDirs: string[]) {
+  const requires: string[] = []
+  const lessRequires: string[] = []
+  const publicComponents: string[] = []
+
+  publicDirs.forEach((dirname: string) => {
+    const publicComponent = bigCamelize(dirname)
+
+    publicComponents.push(publicComponent)
+    requires.push(`var ${publicComponent} = require('./${dirname}')['default']`)
+    lessRequires.push(`require('./${dirname}/style')`)
+  })
+
+  const lessTemplate = `\
+${lessRequires.join('\n')}
+`
+  writeFile(resolve(dir, 'less.js'), lessTemplate, 'utf-8')
 }

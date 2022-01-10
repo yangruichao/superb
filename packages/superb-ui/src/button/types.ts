@@ -1,5 +1,3 @@
-import React from 'react'
-
 export type ButtonType = 'default' | 'primary' | 'info' | 'success' | 'warning' | 'danger'
 export type ButtonSize = 'small' | 'mini' | 'large' | 'normal'
 

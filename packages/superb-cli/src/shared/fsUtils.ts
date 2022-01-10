@@ -1,6 +1,6 @@
-import { lstatSync, pathExistsSync } from 'fs-extra'
-import { extname, parse } from 'path'
-import { EXAMPLE_DIR_NAME, TESTS_DIR_NAME } from './constant'
+import { lstatSync, pathExistsSync, readdir } from 'fs-extra'
+import { extname, parse, resolve } from 'path'
+import { EXAMPLE_DIR_NAME, PUBLIC_DIR_INDEXES, SRC_DIR, TESTS_DIR_NAME } from './constant'
 import { getSuperbConfig } from '../config/superb-config'
 
 export function accessProperty(target: any, operator: string) {
@@ -18,6 +18,10 @@ export function getDirComponentNames(dir: string[]) {
       ![...accessProperty(getSuperbConfig(), 'componentsIgnores'), 'index.js'].includes(filename)
   )
 }
+export async function getPublicDirs(): Promise<string[]> {
+  const srcDir: string[] = await readdir(SRC_DIR)
+  return srcDir.filter((filename: string) => isPublicDir(resolve(SRC_DIR, filename)))
+}
 export function isDir(path: string): boolean {
   return pathExistsSync(path) && lstatSync(path).isDirectory()
 }
@@ -25,9 +29,6 @@ export function isMD(path: string): boolean {
   return pathExistsSync(path) && extname(path) === '.md'
 }
 
-export function isSFC(path: string): boolean {
-  return (pathExistsSync(path) && extname(path) === '.tsx') || extname(path) === '.jsx'
-}
 export function isExampleDir(path: string): boolean {
   return pathExistsSync(path) && parse(path).dir.endsWith(EXAMPLE_DIR_NAME)
 }
@@ -45,6 +46,9 @@ export function isLess(path: string): boolean {
 export function isTestsDir(path: string): boolean {
   return pathExistsSync(path) && parse(path).dir.endsWith(TESTS_DIR_NAME)
 }
+export const isPublicDir = (dir: string): boolean =>
+  PUBLIC_DIR_INDEXES.some((index) => pathExistsSync(resolve(dir, index)))
+
 export function replaceExt(path: string, ext: string): string {
   return path.replace(extname(path), ext)
 }

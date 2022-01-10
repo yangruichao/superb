@@ -3,6 +3,7 @@ import Button from '../button'
 //@ts-ignore
 import Md from '../docs/zh-CN.md'
 import './index.less'
+import '../style'
 
 import ExampleCode from '../../../../superb-cli/site/comonents/ExampleCode'
 

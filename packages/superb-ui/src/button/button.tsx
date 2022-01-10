@@ -1,10 +1,8 @@
 import React from 'react'
 import classNames from 'classnames'
 import { ButtonProps } from './types'
-import './button.less'
 
 const prefixCls = 'superb-btn'
-
 const Button = function (props: ButtonProps) {
   const {
     type = 'default',

@@ -1,8 +1,8 @@
 import { pathExistsSync, readdir, readdirSync, writeFile } from 'fs-extra'
-import { DOCS_DIR_NAME, ROOT_DOCS_DIR, SITE_PC_ROUTES, SRC_DIR } from '../shared/constant'
+import { EXAMPLE_DIR_NAME, ROOT_DOCS_DIR, SITE_PC_ROUTES, SRC_DIR } from '../shared/constant'
 import { resolve } from 'path'
 import slash from 'slash'
-import { isMD, isSFC } from '../shared/fsUtils'
+import { isMD, isScript } from '../shared/fsUtils'
 
 const COMPONENT_DOCS_RE = /\/([-\w]+)\/example\/([-\w]+)\.tsx/
 const ROOT_DOCS_RE = /\/docs\/([-\w]+)\.([-\w]+)\.md/
@@ -20,7 +20,7 @@ export function getRootDocsRoutePath(rootDocsPath: string): string {
 export async function findComponentDocsPaths(): Promise<string[]> {
   const dir: string[] = await readdir(SRC_DIR)
 
-  const buildPath = (filename: string) => resolve(SRC_DIR, filename, DOCS_DIR_NAME)
+  const buildPath = (filename: string) => resolve(SRC_DIR, filename, EXAMPLE_DIR_NAME)
 
   const existPath = (filename: string) => pathExistsSync(buildPath(filename))
 
@@ -30,7 +30,7 @@ export async function findComponentDocsPaths(): Promise<string[]> {
     readdirSync(dirPath).forEach((mdName: string) => {
       const path = resolve(dirPath, mdName)
 
-      isSFC(path) && routePaths.push(slash(path))
+      isScript(path) && routePaths.push(slash(path))
     })
 
     return routePaths

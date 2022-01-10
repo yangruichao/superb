@@ -47,6 +47,7 @@
     "chokidar": "^3.5.2",
     "clean-webpack-plugin": "^4.0.0",
     "commander": "^8.3.0",
+    "copy-webpack-plugin": "^10.2.0",
     "css-loader": "^6.5.1",
     "fork-ts-checker-webpack-plugin": "^6.5.0",
     "fs-extra": "^10.0.0",
