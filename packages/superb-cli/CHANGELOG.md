@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/yangruichao/superb/compare/v0.8.0...v0.8.1) (2022-01-10)
+
+### Bug Fixes
+
+- **superb-cli/compile:** 优化编译，删除冗余代码 ([c24b2fd](https://github.com/yangruichao/superb/commit/c24b2fd5ee0494ef03a1077e9786d0cab78d35d0))
+
 # [0.8.0](https://github.com/yangruichao/superb/compare/v0.7.0...v0.8.0) (2022-01-05)
 
 **Note:** Version bump only for package @superb/cli
